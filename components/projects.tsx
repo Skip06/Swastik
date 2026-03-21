@@ -3,6 +3,13 @@ import { Github } from "lucide-react"
 
 const projects = [
   {
+    name: "HN-TUI",
+    description:
+      "A terminal-based Hacker News reader built with Rust. Browse top stories, read comments, and open links — all from your terminal with a clean, scrollable TUI.",
+    tech: ["Rust", "Ratatui", "Tokio", "Reqwest"],
+    github: "https://github.com/Skip06/HN-TUI",
+  },
+  {
     name: "selfHealingBridge",
     description:
       "Self-healing API bridge that automatically detects and repairs schema drift using LangChain and Groq. It uses RAG with Hugging Face Transformer embeddings.",
