@@ -3,6 +3,18 @@ import { Github } from "lucide-react"
 
 const projects = [
   {
+    name: "Oxigrad",
+    description: "A tiny Rust implementation of automatic differentiation inspired by Andrej Karpathy's micrograd. It builds scalar computation graphs, tracks operations, and computes gradients using reverse-mode backpropagation. Includes simple neural-network primitives for training small MLPs.",
+    tech: ["Rust", "Graphviz"],
+    github: "https://github.com/Skip06/Oxigrad",
+  },
+  {
+    name: "url_shortner",
+    description: "A URL shortener service built with Actix Web, SQLx, and Redis, providing fast link shortening and redirection.",
+    tech: ["Rust", "Actix Web", "SQLx", "Redis"],
+    github: "https://github.com/Skip06/url_shortner",
+  },
+  {
     name: "HN-TUI",
     description:
       "A terminal-based Hacker News reader built with Rust. Browse top stories, read comments, and open links — all from your terminal with a clean, scrollable TUI.",
@@ -22,12 +34,7 @@ const projects = [
     tech: ["LangGraph", "Vercel AI SDK", "Supermemory", "TypeScript"],
     github: "https://github.com/Skip06/SharkTank-AI",
   },
-  {
-    name: "image-wizard",
-    description: "CLI tool for batch image processing and optimization with support for multiple formats.",
-    tech: ["Python", "Pillow", "CLI"],
-    github: "https://github.com/Skip06/image-wizard",
-  },
+  
   {
     name: "broadcast-server",
     description:
@@ -41,18 +48,7 @@ const projects = [
     tech: ["TypeScript", "TCP", "Data Structures"],
     github: "https://github.com/Skip06/Redis-Server",
   },
-  {
-    name: "tsexpress",
-    description: "Full TypeScript Express API server for pets - clean backend practice with proper typing.",
-    tech: ["TypeScript", "Express", "REST API"],
-    github: "https://github.com/Skip06/tsexpress",
-  },
-  {
-    name: "caching-proxy",
-    description: "HTTP caching proxy server with HIT/MISS tracking for efficient request handling.",
-    tech: ["TypeScript", "HTTP", "Caching"],
-    github: "https://github.com/Skip06/caching-proxy",
-  },
+
   {
     name: "Revvup-d",
     description: "Duolingo-style revision app for coding concepts with spaced repetition and gamified learning.",
