@@ -1,95 +1,110 @@
 "use client"
 
 import Link from "next/link"
-import { Github, Twitter, Mail, Briefcase } from "lucide-react"
+import Image from "next/image"
+import { Github, Twitter, Mail } from "lucide-react"
 import { useEffect, useState } from "react"
 
-const skills = ["TypeScript", "Python", "C", "Bun", "Systems Programming", "Machine Learning"]
+const roles = ["Backend Systems", "Machine Learning", "Systems Programming", "Rust & TypeScript"]
 
 export function Hero() {
-  const [currentSkill, setCurrentSkill] = useState(0)
+  const [currentRole, setCurrentRole] = useState(0)
   const [displayText, setDisplayText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    const skill = skills[currentSkill]
+    const role = roles[currentRole]
     const timeout = setTimeout(
       () => {
         if (!isDeleting) {
-          if (displayText.length < skill.length) {
-            setDisplayText(skill.slice(0, displayText.length + 1))
+          if (displayText.length < role.length) {
+            setDisplayText(role.slice(0, displayText.length + 1))
           } else {
-            setTimeout(() => setIsDeleting(true), 1500)
+            setTimeout(() => setIsDeleting(true), 2500)
           }
         } else {
           if (displayText.length > 0) {
             setDisplayText(displayText.slice(0, -1))
           } else {
             setIsDeleting(false)
-            setCurrentSkill((prev) => (prev + 1) % skills.length)
+            setCurrentRole((prev) => (prev + 1) % roles.length)
           }
         }
       },
-      isDeleting ? 50 : 100,
+      isDeleting ? 30 : 65,
     )
-
     return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, currentSkill])
+  }, [displayText, isDeleting, currentRole])
 
   return (
-    <section className="mb-20">
-      <div className="mb-8">
-        <p className="text-muted-foreground text-sm mb-2 font-mono">
-          <span className="text-primary">$</span> whoami
-        </p>
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4 tracking-tight">Swastik Kumar Patro</h1>
-        <h2 className="text-2xl sm:text-3xl text-muted-foreground font-medium mb-6">Backend & ML Developer</h2>
+    <section className="pt-36 pb-10 animate-fade-in-up">
+      {/* Avatar */}
+      <div className="mb-10">
+        <Image
+          src="/images/image.png"
+          alt="Swastik Kumar Patro"
+          width={64}
+          height={64}
+          className="rounded-full"
+        />
       </div>
 
-      <div className="mb-8 h-8">
-        <p className="text-lg text-muted-foreground font-mono">
-          I build things with{" "}
-          <span className="text-primary font-semibold">
+      {/* Name — strong, high contrast */}
+      <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">
+        Swastik Kumar Patro
+      </h1>
+
+      {/* Subtitle — secondary text color */}
+      <p className="text-[15px] mb-5" style={{ color: "var(--text-secondary)" }}>
+        2nd year CS student · India
+      </p>
+
+      {/* Status */}
+      <div className="mb-7">
+        <div className="status-badge">
+          <span className="status-dot" />
+          <span>looking for internship opportunities</span>
+        </div>
+      </div>
+
+      {/* Bio — readable secondary color, generous line-height */}
+      <div className="space-y-5 mb-8">
+        <p className="leading-[1.8] text-[15.5px]" style={{ color: "var(--text-secondary)" }}>
+          I build robust backend systems and experiment with machine learning — from
+          first principles whenever possible. I&apos;m passionate about code and
+          maths, and love making things that are fast, correct, and elegant.
+        </p>
+        <p className="leading-[1.8] text-[15.5px]" style={{ color: "var(--text-secondary)" }}>
+          When I&apos;m not coding, you&apos;ll find me playing chess, exploring new places, or
+          getting nerd-sniped by physics problems.
+          If you&apos;re reading this, I&apos;d probably enjoy talking to you.
+        </p>
+      </div>
+
+      {/* Typing effect */}
+      <div className="mb-8 h-5">
+        <p className="text-[13px] text-muted-foreground font-mono">
+          currently into{" "}
+          <span className="text-foreground">
             {displayText}
             <span className="typing-cursor">|</span>
           </span>
         </p>
       </div>
 
-      <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-2xl">
-        2nd year CS student passionate about code and maths. Building scalable applications and exploring the
-        intersection of systems programming and machine learning.
-      </p>
-
-      <div className="inline-flex items-center gap-2 text-sm text-accent bg-accent/10 border border-accent/30 px-4 py-2 rounded-full mb-8">
-        <Briefcase className="w-4 h-4" />
-        <span>Looking for internship opportunities</span>
-        <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-      </div>
-
-      <div className="flex items-center gap-4">
-        <Link
-          href="https://github.com/Skip06"
-          target="_blank"
-          className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-lg text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
-        >
-          <Github className="w-4 h-4" />
-          GitHub
+      {/* Social links */}
+      <div className="flex items-center gap-5">
+        <Link href="https://github.com/Skip06" target="_blank" className="pill-link">
+          <Github className="w-[14px] h-[14px]" />
+          github
         </Link>
-        <Link
-          href="https://x.com/SwastKumar"
-          target="_blank"
-          className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-lg text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
-        >
-          <Twitter className="w-4 h-4" />
-          Twitter
+        <Link href="https://x.com/SwastKumar" target="_blank" className="pill-link">
+          <Twitter className="w-[14px] h-[14px]" />
+          twitter
         </Link>
-        <Link
-          href="mailto:swastik.patro02@gmail.com"
-          className="flex items-center gap-2 px-4 py-2 bg-secondary rounded-lg text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-all"
-        >
-          <Mail className="w-4 h-4" />
-          Email
+        <Link href="mailto:swastik.patro02@gmail.com" className="pill-link">
+          <Mail className="w-[14px] h-[14px]" />
+          email
         </Link>
       </div>
     </section>

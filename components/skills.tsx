@@ -1,35 +1,58 @@
 "use client"
 
-import { SiTypescript, SiPython, SiC, SiBun, SiNodedotjs, SiReact, SiDocker, SiGit } from "react-icons/si"
+import { useEffect, useState } from "react"
 
-const skills = [
-  { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
-  { name: "Python", icon: SiPython, color: "#3776ab" },
-  { name: "C", icon: SiC, color: "#a8b9cc" },
-  { name: "Bun", icon: SiBun, color: "#fbf0df" },
-  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-  { name: "React", icon: SiReact, color: "#61dafb" },
-  { name: "Docker", icon: SiDocker, color: "#2496ed" },
-  { name: "Git", icon: SiGit, color: "#f05032" },
+const skillGroups = [
+  {
+    label: "languages",
+    items: ["TypeScript", "Python", "Rust", "C"],
+  },
+  {
+    label: "backend & infra",
+    items: ["Node.js", "Bun", "Actix Web", "Docker", "Redis"],
+  },
+  {
+    label: "ml & ai",
+    items: ["PyTorch", "LangChain", "RAG", "HuggingFace"],
+  },
+  {
+    label: "tools & databases",
+    items: ["Git", "Linux", "PostgreSQL", "WebSocket", "TCP"],
+  },
 ]
 
 export function Skills() {
-  return (
-    <section id="skills" className="mb-20">
-      <h2 className="text-2xl font-bold mb-2">Skills</h2>
-      <p className="text-muted-foreground mb-8">Technologies I work with</p>
+  const [isVisible, setIsVisible] = useState(false)
 
-      <div className="grid grid-cols-4 sm:grid-cols-8 gap-4">
-        {skills.map((skill) => (
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      { threshold: 0.2 }
+    )
+    const el = document.getElementById("skills")
+    if (el) observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section id="skills" className="py-12 scroll-mt-24">
+      <hr className="section-divider mb-12" />
+      <h2 className="text-lg font-semibold tracking-tight mb-8">technologies</h2>
+
+      <div className="grid grid-cols-2 gap-8">
+        {skillGroups.map((group, gi) => (
           <div
-            key={skill.name}
-            className="group p-4 bg-card/50 backdrop-blur-sm rounded-xl hover:bg-card/80 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/10"
+            key={group.label}
+            className={isVisible ? "animate-fade-in-up" : "opacity-0"}
+            style={{ animationDelay: `${gi * 100}ms` }}
           >
-            <div className="flex items-center justify-center">
-              <skill.icon
-                className="w-10 h-10 transition-transform group-hover:scale-110"
-                style={{ color: skill.color }}
-              />
+            <h3 className="text-[11px] text-muted-foreground mb-2.5 tracking-wider font-medium">
+              {group.label}
+            </h3>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              {group.items.map((item) => (
+                <span key={item} className="skill-chip">{item}</span>
+              ))}
             </div>
           </div>
         ))}

@@ -1,24 +1,35 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { Skills } from "@/components/skills"
 import { Projects } from "@/components/projects"
-import { About } from "@/components/about"
+import { Focus } from "@/components/focus"
+import { Skills } from "@/components/skills"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
-import { ParticleBackground } from "@/components/particle-background"
-import { MouseTrail } from "@/components/mouse-trail"
+import { CatCursor } from "@/components/cat-cursor"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground transition-colors duration-300 relative">
-      <ParticleBackground />
-      <MouseTrail />
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
-        <Header />
-        <Hero />
-        <Skills />
+    <main className="min-h-screen bg-background text-foreground relative">
+      {/* Background effects — subtle */}
+      <div className="bg-blob bg-blob-1" />
+      <div className="bg-blob bg-blob-2" />
+      <div className="bg-blob bg-blob-3" />
+      <div className="bg-grain" />
+
+      {/* Sketch cat cursor */}
+      <CatCursor />
+
+      {/* Floating nav */}
+      <Header />
+
+      {/* Content — generous max width and padding */}
+      <div className="relative z-10 max-w-xl mx-auto px-6 pb-6">
+        <div id="hero">
+          <Hero />
+        </div>
         <Projects />
-        <About />
+        <Focus />
+        <Skills />
         <Contact />
         <Footer />
       </div>
